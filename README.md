@@ -7,7 +7,7 @@ This code can develop an NCO model with a Light Encoder and a Heavy Decoder for 
 ## Dependencies
 
 ```bash
-Python=3.8.6
+# Python==3.8
 torch==1.12.1
 numpy==1.23.3
 matplotlib==3.5.2

@@ -14,8 +14,8 @@ sys.path.insert(0, "../..")  # for utils
 # import
 import logging
 import numpy as np
-from LEHD.utils.utils import create_logger, copy_all_src
-from LEHD.TSP.TSPTester_inTSPlib import TSPTester as Tester
+from utils import create_logger, copy_all_src
+from TSPTester_inTSPlib import TSPTester as Tester
 
 ########### Frequent use parameters  ##################################################
 

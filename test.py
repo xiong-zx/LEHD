@@ -11,8 +11,8 @@ sys.path.insert(0, "..")  # for problem_def
 sys.path.insert(0, "../..")  # for utils
 import logging
 import numpy as np
-from LEHD.utils.utils import create_logger, copy_all_src
-from LEHD.TSP.TSPTester import TSPTester as Tester
+from utils import create_logger, copy_all_src
+from TSPTester import TSPTester as Tester
 
 #############################################################
 

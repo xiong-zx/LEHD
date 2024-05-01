@@ -5,10 +5,10 @@ import torch
 from torch.optim import Adam as Optimizer
 from torch.optim.lr_scheduler import MultiStepLR as Scheduler
 
-from LEHD.TSP.TSPModel import TSPModel as Model
-from LEHD.TSP.test import main_test
-from LEHD.TSP.TSPEnv import TSPEnv as Env
-from LEHD.utils.utils import *
+from TSPModel import TSPModel as Model
+from test import main_test
+from TSPEnv import TSPEnv as Env
+from utils import *
 
 
 class TSPTrainer:

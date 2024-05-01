@@ -4,9 +4,9 @@ from logging import getLogger
 import numpy as np
 import torch
 
-from LEHD.TSP.TSPModel import TSPModel as Model
-from LEHD.TSP.TSPEnv_inTSPlib import TSPEnv as Env
-from LEHD.utils.utils import *
+from TSPModel import TSPModel as Model
+from TSPEnv_inTSPlib import TSPEnv as Env
+from utils import *
 
 
 class TSPTester():
