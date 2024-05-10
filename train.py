@@ -1,7 +1,7 @@
 
 DEBUG_MODE = False
 USE_CUDA = not DEBUG_MODE
-CUDA_DEVICE_NUM = 0
+CUDA_DEVICE_NUM = 3
 
 # Path Config
 import os
@@ -66,9 +66,9 @@ trainer_params = {
                },
                },
     'model_load': {
-        'enable': False,  # enable loading pre-trained model
-        'path': '.result/20230509_153705_train',  # directory path of pre-trained model and log files saved.
-        'epoch': 150,  # epoch version of pre-trained model to laod.
+        'enable': True,  # enable loading pre-trained model
+        'path': 'result/20240501_210007_train',  # directory path of pre-trained model and log files saved.
+        'epoch': 24,  # epoch version of pre-trained model to laod.
                   }
     }
 

@@ -1,7 +1,7 @@
 
 DEBUG_MODE = False
 USE_CUDA = not DEBUG_MODE
-CUDA_DEVICE_NUM = 0
+CUDA_DEVICE_NUM = 3
 
 # Path Config
 import os
@@ -20,13 +20,13 @@ from TSPTester import TSPTester as Tester
 problem_size = 100
 
 # decode method: use RRC or not (greedy)
-Use_RRC = True
+Use_RRC = False
 
 # RRC budget
 RRC_budget = 10
 
-model_load_path = 'result/20230509_153705_train'
-model_load_epoch = 150
+model_load_path = 'result/20240501_210007_train'
+model_load_epoch = 20
 
 test_paras = {
     # problem_size: [filename, episode, batch]
@@ -94,23 +94,6 @@ def main_test(epoch, path, use_RRC=None,cuda_device_num=None):
         'path': path,
         'epoch': epoch,
     }
-
-    tester = Tester(env_params=env_params,
-                    model_params=model_params,
-                    tester_params=tester_params)
-
-    copy_all_src(tester.result_folder)
-
-    score_optimal, score_student, gap = tester.run()
-    return score_optimal, score_student, gap
-
-
-def main():
-    if DEBUG_MODE:
-        _set_debug_mode()
-
-    create_logger(**logger_params)
-    _print_config()
 
     tester = Tester(env_params=env_params,
                     model_params=model_params,

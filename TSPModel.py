@@ -78,12 +78,12 @@ class TSP_Decoder(nn.Module):
         super().__init__()
         self.model_params = model_params
         embedding_dim = self.model_params['embedding_dim']
-        encoder_layer_num = self.model_params['decoder_layer_num']
+        decoder_layer_num = self.model_params['decoder_layer_num']
 
         self.embedding_first_node = nn.Linear(embedding_dim, embedding_dim, bias=True)
         self.embedding_last_node = nn.Linear(embedding_dim, embedding_dim, bias=True)
 
-        self.layers = nn.ModuleList([DecoderLayer(**model_params) for _ in range(encoder_layer_num)])
+        self.layers = nn.ModuleList([DecoderLayer(**model_params) for _ in range(decoder_layer_num)])
 
         self.k_1 = nn.Linear(embedding_dim, embedding_dim, bias=True)
 

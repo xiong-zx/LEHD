@@ -40,6 +40,9 @@ class TSPTester():
         self.env = Env(**self.env_params)
         self.model = Model(**self.model_params)
 
+        num_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
+        self.logger.info("Model has {} parameters".format(num_params))
+
         # Restore
         model_load = tester_params['model_load']
         checkpoint_fullname = '{path}/checkpoint-{epoch}.pt'.format(**model_load)
