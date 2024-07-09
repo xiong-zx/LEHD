@@ -30,7 +30,7 @@ model_load_epoch = [i+1 for i in range(100)]
 
 test_paras = {
     # problem_size: [filename, episode, batch]
-    'train': ['train_TSP100_n100w_sampled.txt', 10000, 10000],
+    'train': ['train_TSP100_n100w_sample_n1w.txt', 10000, 10000],
     100: ['test_TSP100_n1w.txt', 10000, 10000],
     200: ['test_TSP200_n128.txt', 128, 128],
     500: ['test_TSP500_n128.txt', 128, 128],
