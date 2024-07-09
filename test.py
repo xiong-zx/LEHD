@@ -1,7 +1,7 @@
 
 DEBUG_MODE = False
 USE_CUDA = not DEBUG_MODE
-CUDA_DEVICE_NUM = 3
+CUDA_DEVICE_NUM = 1
 
 # Path Config
 import os
@@ -11,25 +11,26 @@ sys.path.insert(0, "..")  # for problem_def
 sys.path.insert(0, "../..")  # for utils
 import logging
 import numpy as np
-from utils import create_logger, copy_all_src
+from utils import create_logger
 from TSPTester import TSPTester as Tester
 
 #############################################################
 
 # testing problem size
-problem_size = 100
+problem_size = 'train'
 
 # decode method: use RRC or not (greedy)
-Use_RRC = False
+Use_RRC = True
 
 # RRC budget
 RRC_budget = 10
 
-model_load_path = 'result/20240501_210007_train'
-model_load_epoch = 20
+model_load_path = 'result/20240505_170942_train'
+model_load_epoch = [i+1 for i in range(100)]
 
 test_paras = {
     # problem_size: [filename, episode, batch]
+    'train': ['train_TSP100_n100w_sampled.txt', 10000, 10000],
     100: ['test_TSP100_n1w.txt', 10000, 10000],
     200: ['test_TSP200_n128.txt', 128, 128],
     500: ['test_TSP500_n128.txt', 128, 128],
@@ -99,7 +100,7 @@ def main_test(epoch, path, use_RRC=None,cuda_device_num=None):
                     model_params=model_params,
                     tester_params=tester_params)
 
-    copy_all_src(tester.result_folder)
+    # copy_all_src(tester.result_folder)
 
     score_optimal, score_student, gap = tester.run()
     return score_optimal, score_student, gap
@@ -120,10 +121,12 @@ def _print_config():
 ##########################################################################################
 
 if __name__ == "__main__":
-
+    import pandas as pd
     path = model_load_path
     allin = []
-    for i in [model_load_epoch]:
+    for i in model_load_epoch:
         score_optimal, score_student, gap = main_test(i, path)
-        allin.append([score_optimal, score_student, gap])
-    np.savetxt('result.txt', np.array(allin), delimiter=',')
+        allin.append([i,score_optimal, score_student, gap])
+    df = pd.DataFrame(allin, columns=['epoch', 'optimal_score','student_score', 'gap'])
+    result_file_name = f'result_tsp{problem_size}.csv' if not Use_RRC else f'result_tsp{problem_size}_RRC{RRC_budget}.csv'
+    df.to_csv(result_file_name, index=False)
